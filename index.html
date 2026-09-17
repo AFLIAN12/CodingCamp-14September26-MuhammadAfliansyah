@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expense & Budget Visualizer</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="container">
+        <!-- Header with Total Balance -->
+        <header class="header">
+            <h1>Expense Tracker</h1>
+            <div class="balance-container">
+                <h2>Total Balance</h2>
+                <div id="totalBalance" class="balance-amount">$0.00</div>
+            </div>
+            <!-- Theme Toggle Button -->
+            <button id="themeToggle" class="theme-toggle" aria-label="Toggle dark/light mode">
+                🌙
+            </button>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Input Form Section -->
+            <section class="form-section">
+                <h3>Add New Transaction</h3>
+                <form id="expenseForm" class="expense-form">
+                    <div class="form-group">
+                        <label for="itemName">Item Name</label>
+                        <input type="text" id="itemName" name="itemName" required placeholder="Enter item name">
+                        <div class="error-message" id="itemNameError"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="amount">Amount ($)</label>
+                        <input type="number" id="amount" name="amount" step="0.01" min="0" required placeholder="0.00">
+                        <div class="error-message" id="amountError"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="category">Category</label>
+                        <select id="category" name="category" required>
+                            <option value="">Select a category</option>
+                            <option value="Food">Food</option>
+                            <option value="Transport">Transport</option>
+                            <option value="Fun">Fun</option>
+                        </select>
+                        <div class="error-message" id="categoryError"></div>
+                    </div>
+
+                    <!-- Custom Category Section -->
+                    <div class="form-group custom-category-section" id="customCategorySection" style="display: none;">
+                        <label for="customCategory">Custom Category</label>
+                        <div class="custom-category-input">
+                            <input type="text" id="customCategory" name="customCategory" placeholder="Enter custom category">
+                            <button type="button" id="addCustomCategory" class="btn-secondary">Add</button>
+                        </div>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="button" id="showCustomCategory" class="btn-link">+ Add Custom Category</button>
+                        <button type="submit" class="btn-primary">Add Transaction</button>
+                    </div>
+                </form>
+            </section>
+
+            <!-- Charts Section -->
+            <section class="charts-section">
+                <div class="chart-container">
+                    <h3>Spending Distribution</h3>
+                    <canvas id="expenseChart"></canvas>
+                    <div id="noDataMessage" class="no-data-message">
+                        Add some transactions to see the chart
+                    </div>
+                </div>
+            </section>
+
+            <!-- Monthly Summary Toggle -->
+            <section class="summary-section">
+                <div class="summary-toggle">
+                    <button id="toggleSummary" class="btn-secondary">Show Monthly Summary</button>
+                </div>
+                <div id="monthlySummary" class="monthly-summary" style="display: none;">
+                    <h3>Monthly Summary</h3>
+                    <div id="summaryContent">
+                        <!-- Monthly summary content will be populated by JavaScript -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- Transaction List Section -->
+            <section class="transactions-section">
+                <div class="transactions-header">
+                    <h3>Recent Transactions</h3>
+                    <button id="clearAll" class="btn-danger" style="display: none;">Clear All</button>
+                </div>
+                <div class="transactions-container">
+                    <ul id="transactionsList" class="transactions-list">
+                        <!-- Transactions will be populated by JavaScript -->
+                    </ul>
+                    <div id="noTransactionsMessage" class="no-transactions-message">
+                        No transactions yet. Add your first expense above!
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="js/app.js"></script>
+</body>
+</html>
